@@ -12,7 +12,7 @@ from os.path import basename
 
 # Function borrowed from: https://stackoverflow.com/a/3041990
 def query_yes_no(question, default="yes"):
-    """Ask a yes/no question via raw_input() and return their answer.
+    """Ask a yes/no question via input() and return their answer.
 
     "question" is a string that is presented to the user.
     "default" is the presumed answer if the user just hits <Enter>.
@@ -34,7 +34,7 @@ def query_yes_no(question, default="yes"):
 
     while True:
         sys.stdout.write(question + prompt)
-        choice = raw_input().lower()
+        choice = input().lower()
         if default is not None and choice == '':
             return valid[default]
         elif choice in valid:
@@ -79,7 +79,7 @@ if __name__ == "__main__":
             # Look for the topics that are available and save the total number of messages for each topic (useful for the progress bar)
             total_num_event_msgs = 0
             topics = bag.get_type_and_topic_info().topics
-            for topic_name, topic_info in topics.iteritems():
+            for topic_name, topic_info in topics.items():
                 if topic_name == args.event_topic:
                     total_num_event_msgs = topic_info.message_count
                     print('Found events topic: {} with {} messages'.format(topic_name, topic_info.message_count))
